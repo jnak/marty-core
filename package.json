@@ -1,0 +1,32 @@
+{
+  "name": "marty-core",
+  "version": "0.10.0",
+  "directories": {
+    "lib": "./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jhollingworth/marty.git"
+  },
+  "dependencies": {
+    "flux": "^2.0.1",
+    "lodash": "^3.5.0",
+    "wolfy87-eventemitter": "^4.2.11"
+  },
+  "author": "James Hollingworth",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/jhollingworth/marty/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/jhollingworth/marty/issues"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "homepage": "https://martyjs.org"
+}
