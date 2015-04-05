@@ -1,12 +1,12 @@
 {
   "name": "marty-core",
-  "version": "0.10.0-alpha",
+  "version": "0.10.0-alpha1",
   "directories": {
     "lib": "./lib"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jhollingworth/marty.git"
+    "url": "git@github.com:martyjs/marty-core.git"
   },
   "dependencies": {
     "flux": "^2.0.1",
@@ -17,16 +17,28 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/jhollingworth/marty/master/LICENSE"
+      "url": "https://raw.github.com/martyjs/marty-core/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/jhollingworth/marty/issues"
+    "url": "https://github.com/martyjs/marty-core/issues"
   },
   "browserify": {
     "transform": [
       "babelify"
     ]
   },
-  "homepage": "https://martyjs.org"
+  "homepage": "https://martyjs.org",
+  "devDependencies": {
+    "babelify": "^6.0.1",
+    "chai": "^2.0.0",
+    "marty-build": "^0.10.1-0",
+    "sinon": "^1.14.1",
+    "chai-as-promised": "^4.3.0",
+    "marty-core": "^0.10.0",
+    "sinon-chai": "^2.7.0"
+  },
+  "peerDependencies": {
+    "marty-core": "^0.10.0"
+  }
 }

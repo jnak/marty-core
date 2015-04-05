@@ -1,5 +1,6 @@
+var _ = require('./lib/mindash');
+var state = require('./lib/state');
 var logger = require('./lib/logger');
-var _ = require('./lib/utils/mindash');
 var warnings = require('./lib/warnings');
 var Dispatcher = require('./lib/dispatcher');
 var Diagnostics = require('./lib/diagnostics');
@@ -9,17 +10,41 @@ module.exports = function (marty) {
   marty.register('logger', logger);
   marty.register('dispose', dispose);
   marty.register('warnings', warnings);
+  marty.register('register', register);
   marty.register('dispatcher', Dispatcher);
   marty.register('Dispatcher', Dispatcher);
   marty.register('Diagnostics', Diagnostics);
   marty.register('diagnostics', Diagnostics);
 
-  _.each(environment, function (value, key) {
-    marty.register(key, value);
-  });
+  registerEverythingIn(state);
+  registerEverythingIn(environment);
+
+  function registerEverythingIn(obj) {
+    _.each(obj, function (value, key) {
+      marty.register(key, value);
+    });
+  }
 
   function dispose() {
     Dispatcher.dispose();
     this.registry.dispose();
+  }
+
+  function register(clazz, id) {
+    var className = getClassName(clazz);
+
+    if (!clazz.id) {
+      clazz.id = id || className;
+    }
+
+    if (!clazz.displayName) {
+      clazz.displayName = clazz.id;
+    }
+
+    return this.registry.register(clazz);
+  }
+
+  function createContext() {
+    return this.registry.createContext();
   }
 };
