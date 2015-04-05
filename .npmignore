@@ -1,6 +1,5 @@
 examples
 node_modules
-test
 .gitattributes
 .gitignore
 .jscsrc
