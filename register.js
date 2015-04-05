@@ -1,10 +1,10 @@
 var _ = require('./lib/mindash');
-var state = require('./lib/state');
 var logger = require('./lib/logger');
 var warnings = require('./lib/warnings');
 var Dispatcher = require('./lib/dispatcher');
 var Diagnostics = require('./lib/diagnostics');
 var environment = require('./lib/environment');
+var getClassName = require('./lib/utils/getClassName');
 
 module.exports = function (marty) {
   marty.register('logger', logger);
@@ -16,7 +16,6 @@ module.exports = function (marty) {
   marty.register('Diagnostics', Diagnostics);
   marty.register('diagnostics', Diagnostics);
 
-  registerEverythingIn(state);
   registerEverythingIn(environment);
 
   function registerEverythingIn(obj) {
@@ -42,9 +41,5 @@ module.exports = function (marty) {
     }
 
     return this.registry.register(clazz);
-  }
-
-  function createContext() {
-    return this.registry.createContext();
   }
 };
