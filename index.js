@@ -1,8 +1,7 @@
 var _ = require('./lib/mindash');
 var logger = require('./lib/logger');
 var warnings = require('./lib/warnings');
-var Dispatcher = require('./lib/dispatcher');
-var Diagnostics = require('./lib/diagnostics');
+var diagnostics = require('./lib/diagnostics');
 var environment = require('./lib/environment');
 var StateSource = require('./lib/stateSource');
 var getClassName = require('./lib/utils/getClassName');
@@ -15,10 +14,7 @@ module.exports = function (marty) {
   marty.register('dispose', dispose);
   marty.register('warnings', warnings);
   marty.register('register', register);
-  marty.register('dispatcher', Dispatcher);
-  marty.register('Dispatcher', Dispatcher);
-  marty.register('Diagnostics', Diagnostics);
-  marty.register('diagnostics', Diagnostics);
+  marty.register('diagnostics', diagnostics);
   marty.register('createStateSource', createStateSource);
 
   _.each(environment, function (value, key) {
@@ -26,8 +22,8 @@ module.exports = function (marty) {
   });
 
   function dispose() {
-    Dispatcher.dispose();
     this.registry.dispose();
+    this.dispatcher.dispose();
   }
 
   function createStateSource(properties) {

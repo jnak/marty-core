@@ -1,6 +1,6 @@
 {
   "name": "marty-core",
-  "version": "0.10.0-alpha7",
+  "version": "0.10.0-beta",
   "directories": {
     "lib": "./lib"
   },
