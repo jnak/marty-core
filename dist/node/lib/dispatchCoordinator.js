@@ -7,7 +7,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 var log = require('./logger');
 var uuid = require('./utils/uuid');
 var warnings = require('./warnings');
-var Instances = require('./instances');
 var resolve = require('./utils/resolve');
 var Environment = require('./environment');
 
@@ -19,10 +18,12 @@ var DispatchCoordinator = (function () {
       log.warn('Warning: Options were not passed into an action creators\' constructor');
     }
 
-    this.__type = type;
-    this.__id = uuid.type(this.__type);
+    options = options || {};
 
-    Instances.add(this, options);
+    this.__type = type;
+    this.__context = options.context;
+    this.__id = uuid.type(this.__type);
+    this.__dispatcher = options.dispatcher;
   }
 
   _createClass(DispatchCoordinator, [{
@@ -32,9 +33,7 @@ var DispatchCoordinator = (function () {
         args[_key - 1] = arguments[_key];
       }
 
-      var dispatcher = getInstance(this).dispatcher;
-
-      return dispatcher.dispatchAction({
+      return this.__dispatcher.dispatchAction({
         type: type,
         arguments: args
       });
@@ -47,15 +46,11 @@ var DispatchCoordinator = (function () {
   }, {
     key: 'context',
     get: function () {
-      return getInstance(this).context;
+      return this.__context;
     }
   }]);
 
   return DispatchCoordinator;
 })();
-
-function getInstance(creators) {
-  return Instances.get(creators);
-}
 
 module.exports = DispatchCoordinator;

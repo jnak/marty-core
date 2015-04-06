@@ -14,12 +14,13 @@ var humanStrings = require('./utils/humanStrings');
 var FUNCTIONS_TO_NOT_WRAP = ['fetch'];
 
 var Registry = (function () {
-  function Registry() {
+  function Registry(options) {
     _classCallCheck(this, Registry);
 
     this.types = {};
     this.classes = {};
     this.defaults = {};
+    this.defaultDispatcher = options.defaultDispatcher;
   }
 
   _createClass(Registry, [{
@@ -69,7 +70,9 @@ var Registry = (function () {
   }, {
     key: 'register',
     value: function register(clazz) {
-      var defaultInstance = new clazz({});
+      var defaultInstance = new clazz({
+        dispatcher: this.defaultDispatcher
+      });
       var type = this.getClassId(defaultInstance);
 
       defaultInstance.__isDefaultInstance = true;

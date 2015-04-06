@@ -7,7 +7,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 var log = require('../logger');
 var uuid = require('../utils/uuid');
 var warnings = require('../warnings');
-var Instances = require('../instances');
 var resolve = require('../utils/resolve');
 var Environment = require('../environment');
 
@@ -19,16 +18,17 @@ var StateSource = (function () {
       log.warn('Warning: Options were not passed into a state source\'s constructor');
     }
 
-    this.__type = 'StateSource';
-    this.__id = uuid.type(this.__type);
+    options = options || {};
 
-    Instances.add(this, options);
+    this.__type = 'StateSource';
+    this.__context = options.context;
+    this.__id = uuid.type(this.__type);
   }
 
   _createClass(StateSource, [{
     key: 'context',
     get: function () {
-      return Instances.get(this).context;
+      return this.__context;
     }
   }, {
     key: 'for',
@@ -37,9 +37,7 @@ var StateSource = (function () {
     }
   }, {
     key: 'dispose',
-    value: function dispose() {
-      Instances.dispose(this);
-    }
+    value: function dispose() {}
   }]);
 
   return StateSource;
