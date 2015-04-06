@@ -31,10 +31,11 @@
   "devDependencies": {
     "babelify": "^6.0.1",
     "chai": "^2.0.0",
+    "chai-as-promised": "^4.3.0",
     "marty-build": "^0.10.0",
     "sinon": "^1.14.1",
-    "chai-as-promised": "^4.3.0",
-    "sinon-chai": "^2.7.0"
+    "sinon-chai": "^2.7.0",
+    "wolfy87-eventemitter": "^4.2.11"
   },
   "peerDependencies": {
     "marty-core": "^0.10.0",
