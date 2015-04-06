@@ -1,15 +1,13 @@
-var buildMarty = require('../lib/buildMarty');
+var Marty = require('../lib/marty');
 var TestSource = require('./fixtures/testSource');
 
 module.exports = function () {
-  return buildMarty({
-    modules: [
-      fixtures,
-      require('../register')
-    ]
-  });
-};
+  var marty = new Marty();
 
-function fixtures(marty) {
-  marty.registerStateSource('TestSource', 'testSource', TestSource);
-}
+  marty.use(require('../index'));
+  marty.use(function (marty) {
+    marty.registerStateSource('TestSource', 'testSource', TestSource);
+  });
+
+  return marty;
+};
