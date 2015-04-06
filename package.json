@@ -1,6 +1,6 @@
 {
   "name": "marty-core",
-  "version": "0.10.0-alpha5",
+  "version": "0.10.0-alpha6",
   "directories": {
     "lib": "./lib"
   },
@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "flux": "^2.0.1",
-    "lodash": "^3.5.0",
-    "wolfy87-eventemitter": "^4.2.11"
+    "lodash": "^3.5.0"
   },
   "author": "James Hollingworth",
   "licenses": [
@@ -38,6 +37,7 @@
     "sinon-chai": "^2.7.0"
   },
   "peerDependencies": {
-    "marty-core": "^0.10.0"
+    "marty-core": "^0.10.0",
+    "wolfy87-eventemitter": "^4.2.11"
   }
 }
