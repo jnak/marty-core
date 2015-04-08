@@ -1,4 +1,4 @@
-var Marty = require('../lib/marty');
+var Marty = require('../main').Marty;
 var TestSource = require('./fixtures/testSource');
 
 module.exports = function () {

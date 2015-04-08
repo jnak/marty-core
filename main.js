@@ -53,3 +53,5 @@ module.exports = function (marty) {
     return this.registry.register(clazz);
   }
 };
+
+_.extend(module.exports, require('./lib'));
