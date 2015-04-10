@@ -17,6 +17,22 @@ module.exports = function (marty) {
   marty.register('diagnostics', diagnostics);
   marty.register('createStateSource', createStateSource);
 
+  marty.registerProperty('isASingleton', {
+    get() {
+      return !!this.__isASingleton;
+    },
+    set(value) {
+      if (this.warnings.martyIsASingleton) {
+        logger.warn(
+          'Warning: Marty will no longer be a singleton in future releases ' +
+          'http://martyjs.org/guides/marty-is-a-singelton.html'
+        ).
+
+        this.__isASingleton = value;
+      }
+    }
+  });
+
   _.each(environment, function (value, key) {
     marty.register(key, value);
   });
