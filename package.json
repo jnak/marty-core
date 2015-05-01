@@ -41,7 +41,6 @@
     "wolfy87-eventemitter": "^4.2.11"
   },
   "peerDependencies": {
-    "marty-core": "^0.10.0",
     "wolfy87-eventemitter": "^4.2.11"
   }
 }
